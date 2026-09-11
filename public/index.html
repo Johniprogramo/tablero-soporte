@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesa de ayuda</title>
+  <!-- Tailwind por CDN: hace falta internet para que carguen los estilos -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="app.js" defer></script>
+</head>
+<!--
+  Esta página todavía no tiene ninguna clase de Tailwind, por eso se ve
+  tan plana. Darle forma es el nivel 0 del enunciado.
+  Puedes añadir clases y contenedores, pero no cambies los id: app.js
+  depende de ellos.
+-->
+<body>
+
+  <header>
+    <h1>Mesa de ayuda</h1>
+    <p>Tickets de soporte de la oficina</p>
+  </header>
+
+  <main>
+
+    <!-- Formulario: crea tickets y, desde el nivel 4, también los edita -->
+    <section>
+      <h2 id="titulo-formulario">Nuevo ticket</h2>
+
+      <form id="form-ticket" novalidate>
+        <label for="titulo">Título</label>
+        <input id="titulo" name="titulo" type="text">
+        <p id="error-titulo"></p>
+
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+
+        <label for="solicitante">Solicitante</label>
+        <input id="solicitante" name="solicitante" type="text">
+        <p id="error-solicitante"></p>
+
+        <label for="categoria">Categoría</label>
+        <select id="categoria" name="categoria">
+          <option value="hardware">Hardware</option>
+          <option value="software">Software</option>
+          <option value="red">Red</option>
+          <option value="accesos">Accesos</option>
+        </select>
+
+        <label for="prioridad">Prioridad</label>
+        <select id="prioridad" name="prioridad">
+          <option value="baja">Baja</option>
+          <option value="media" selected>Media</option>
+          <option value="alta">Alta</option>
+        </select>
+
+        <button id="btn-guardar" type="submit">Crear ticket</button>
+        <button id="btn-cancelar" type="button" hidden>Cancelar edición</button>
+      </form>
+    </section>
+
+    <!-- Tablero -->
+    <section>
+      <h2>Tickets</h2>
+
+      <div id="resumen"></div>
+
+      <div>
+        <label for="filtro-estado">Estado</label>
+        <select id="filtro-estado">
+          <option value="todos">Todos</option>
+          <option value="abierto">Abiertos</option>
+          <option value="en_progreso">En progreso</option>
+          <option value="resuelto">Resueltos</option>
+        </select>
+
+        <label for="busqueda">Buscar</label>
+        <input id="busqueda" type="search" placeholder="Buscar por título">
+      </div>
+
+      <p id="mensaje"></p>
+
+      <div id="lista-tickets"></div>
+    </section>
+
+  </main>
+
+</body>
+</html>
