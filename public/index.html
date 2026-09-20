@@ -4,86 +4,188 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesa de ayuda</title>
+
   <!-- Tailwind por CDN: hace falta internet para que carguen los estilos -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="app.js" defer></script>
 </head>
-<!--
-  Esta página todavía no tiene ninguna clase de Tailwind, por eso se ve
-  tan plana. Darle forma es el nivel 0 del enunciado.
-  Puedes añadir clases y contenedores, pero no cambies los id: app.js
-  depende de ellos.
--->
-<body>
 
-  <header>
-    <h1>Mesa de ayuda</h1>
-    <p>Tickets de soporte de la oficina</p>
+<body class="min-h-screen bg-slate-100 text-slate-800">
+
+  <!-- Encabezado -->
+  <header class="bg-slate-900 text-white shadow-md">
+    <div class="mx-auto max-w-6xl px-6 py-8">
+      <h1 class="text-3xl font-bold tracking-tight">
+        Mesa de ayuda
+      </h1>
+      <p class="mt-1 text-slate-300">
+        Tickets de soporte de la oficina
+      </p>
+    </div>
   </header>
 
-  <main>
+  <main class="mx-auto grid max-w-6xl gap-8 px-6 py-8 lg:grid-cols-3">
 
-    <!-- Formulario: crea tickets y, desde el nivel 4, también los edita -->
-    <section>
-      <h2 id="titulo-formulario">Nuevo ticket</h2>
+    <!-- Formulario -->
+    <section class="h-fit rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+      
+      <div class="mb-6 border-b border-slate-200 pb-4">
+        <h2 id="titulo-formulario" class="text-xl font-semibold text-slate-900">
+          Nuevo ticket
+        </h2>
+        <p class="mt-1 text-sm text-slate-500">
+          Completa los datos para registrar una solicitud.
+        </p>
+      </div>
 
-      <form id="form-ticket" novalidate>
-        <label for="titulo">Título</label>
-        <input id="titulo" name="titulo" type="text">
-        <p id="error-titulo"></p>
+      <form id="form-ticket" class="space-y-5" novalidate>
 
-        <label for="descripcion">Descripción</label>
-        <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+        <div>
+          <label for="titulo" class="mb-1.5 block text-sm font-medium text-slate-700">
+            Título
+          </label>
+          <input
+            id="titulo"
+            name="titulo"
+            type="text"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+          >
+          <p id="error-titulo" class="mt-1 text-sm text-red-600"></p>
+        </div>
 
-        <label for="solicitante">Solicitante</label>
-        <input id="solicitante" name="solicitante" type="text">
-        <p id="error-solicitante"></p>
+        <div>
+          <label for="descripcion" class="mb-1.5 block text-sm font-medium text-slate-700">
+            Descripción
+          </label>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            rows="3"
+            class="w-full resize-y rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+          ></textarea>
+        </div>
 
-        <label for="categoria">Categoría</label>
-        <select id="categoria" name="categoria">
-          <option value="hardware">Hardware</option>
-          <option value="software">Software</option>
-          <option value="red">Red</option>
-          <option value="accesos">Accesos</option>
-        </select>
+        <div>
+          <label for="solicitante" class="mb-1.5 block text-sm font-medium text-slate-700">
+            Solicitante
+          </label>
+          <input
+            id="solicitante"
+            name="solicitante"
+            type="text"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+          >
+          <p id="error-solicitante" class="mt-1 text-sm text-red-600"></p>
+        </div>
 
-        <label for="prioridad">Prioridad</label>
-        <select id="prioridad" name="prioridad">
-          <option value="baja">Baja</option>
-          <option value="media" selected>Media</option>
-          <option value="alta">Alta</option>
-        </select>
+        <div>
+          <label for="categoria" class="mb-1.5 block text-sm font-medium text-slate-700">
+            Categoría
+          </label>
+          <select
+            id="categoria"
+            name="categoria"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+          >
+            <option value="hardware">Hardware</option>
+            <option value="software">Software</option>
+            <option value="red">Red</option>
+            <option value="accesos">Accesos</option>
+          </select>
+        </div>
 
-        <button id="btn-guardar" type="submit">Crear ticket</button>
-        <button id="btn-cancelar" type="button" hidden>Cancelar edición</button>
+        <div>
+          <label for="prioridad" class="mb-1.5 block text-sm font-medium text-slate-700">
+            Prioridad
+          </label>
+          <select
+            id="prioridad"
+            name="prioridad"
+            class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+          >
+            <option value="baja">Baja</option>
+            <option value="media" selected>Media</option>
+            <option value="alta">Alta</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-3 pt-2 sm:flex-row">
+          <button
+            id="btn-guardar"
+            type="submit"
+            class="flex-1 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Crear ticket
+          </button>
+
+          <button
+            id="btn-cancelar"
+            type="button"
+            hidden
+            class="flex-1 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2"
+          >
+            Cancelar edición
+          </button>
+        </div>
+
       </form>
     </section>
 
     <!-- Tablero -->
-    <section>
-      <h2>Tickets</h2>
+    <section class="lg:col-span-2">
 
-      <div id="resumen"></div>
-
-      <div>
-        <label for="filtro-estado">Estado</label>
-        <select id="filtro-estado">
-          <option value="todos">Todos</option>
-          <option value="abierto">Abiertos</option>
-          <option value="en_progreso">En progreso</option>
-          <option value="resuelto">Resueltos</option>
-        </select>
-
-        <label for="busqueda">Buscar</label>
-        <input id="busqueda" type="search" placeholder="Buscar por título">
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-slate-900">
+          Tickets
+        </h2>
+        <p class="mt-1 text-sm text-slate-500">
+          Consulta y administra las solicitudes de soporte.
+        </p>
       </div>
 
-      <p id="mensaje"></p>
+      <!-- Resumen -->
+      <div
+        id="resumen"
+        class="mb-6 rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200"
+      ></div>
 
-      <div id="lista-tickets"></div>
-    </section>
+      <!-- Filtros -->
+      <div class="mb-5 rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
+        <div class="grid gap-4 sm:grid-cols-2">
 
-  </main>
+          <div>
+            <label
+              for="filtro-estado"
+              class="mb-1.5 block text-sm font-medium text-slate-700"
+            >
+              Estado
+            </label>
 
-</body>
-</html>
+            <select
+              id="filtro-estado"
+              class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            >
+              <option value="todos">Todos</option>
+              <option value="abierto">Abiertos</option>
+              <option value="en_progreso">En progreso</option>
+              <option value="resuelto">Resueltos</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              for="busqueda"
+              class="mb-1.5 block text-sm font-medium text-slate-700"
+            >
+              Buscar
+            </label>
+
+            <input
+              id="busqueda"
+              type="search"
+              placeholder="Buscar por título"
+              class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            />
+          </div>
+        </div>
+      </div>
